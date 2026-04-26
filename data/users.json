@@ -1,0 +1,12 @@
+{
+  "carlos": {
+    "kdf": "pbkdf2",
+    "kdf_params": {
+      "iterations": 300000,
+      "hash": "sha256"
+    },
+    "salt_password_b64": "43sku4gTPBSgGwxcJ7guyA==",
+    "bundle_nonce_b64": "R1gaNr8YEEpu5xjB",
+    "bundle_ciphertext_b64": "mvwCAIaPNZuqZ12TQqC+SlltWoya+GfcXFs1QT7gJPRf8++OoGAIfNuEoSVEzWDlFR1kkcE4up77WrdjMUiTkw3Fh9Kh+6TKAlVrY/9fVEowJ845KTrTW8TN02KI7ByuhMtpxMTlFa4ihJVNGB8JN9uAmkmm/8WYoGM0tTIuuu12WkRmxw=="
+  }
+}

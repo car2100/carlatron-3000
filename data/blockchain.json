@@ -1,0 +1,16 @@
+[
+  {
+    "index": 0,
+    "owner": "carlos",
+    "timestamp": "2026-04-25T01:24:52Z",
+    "hash_prev": "GENESIS",
+    "nonce_b64": "m/XaJq9j2i3rY459",
+    "ciphertext_b64": "3wCWD2RRWdOHDDmJAFxbXHjx2RDVUQeM4C30dJFLmzM4MhWuVhFZI8yHVg==",
+    "aad": {
+      "owner": "carlos",
+      "index": 0,
+      "timestamp": "2026-04-25T01:24:52Z"
+    },
+    "block_hash": "f85b9c7141f1e0e7334e803a5153898fb19bb38658d0702994fd80770069eb3d"
+  }
+]

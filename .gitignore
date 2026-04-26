@@ -1,0 +1,7 @@
+# Python cache and virtual environment
+__pycache__/
+*.py[cod]
+.venv/
+
+# VS Code workspace local file
+*.code-workspace
