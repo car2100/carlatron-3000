@@ -13,8 +13,6 @@ Projeto academico com foco didatico para demonstrar, de forma simples e objetiva
 
 ## Instalacao e execucao
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
 pip install -r requirements.txt
 python3 app.py
 ```
@@ -51,13 +49,10 @@ python3 -m unittest discover -s tests -v
 6. Rodar "Executar teste de manipulacao" e mostrar as falhas detectadas.
 
 ## Estrutura do projeto
-- `app.py`: interface de linha de comando para demonstracao.
-- `src/mini_blockchain/auth.py`: cadastro/login e recuperacao segura de segredos do usuario.
-- `src/mini_blockchain/blockchain.py`: criacao, leitura, validacao e tamper test da cadeia.
-- `src/mini_blockchain/storage.py`: persistencia em JSON.
-- `src/mini_blockchain/crypto/`: modulos criptograficos separados (`alg_kdf`, `alg_totp`, `alg_aes_gcm`, `alg_hash`).
-- `tests/`: testes unitarios de algoritmos e de fluxo completo.
-- `docs/`: material teorico e validacao do mapeamento.
+- `app.py`: toda a aplicacao em um unico arquivo (KDF, AES-GCM, TOTP, blockchain, menu).
+- `tests/test_tudo.py`: testes automatizados (KDF, AES-GCM, autenticacao, blockchain, isolamento).
+- `docs/explicacao_teorica.md`: documentacao teorica (TOTP, derivacao de chave, AES-GCM, encadeamento).
+- `data/`: pasta criada automaticamente com `users.json` e `blockchain.json`.
 
 ## Observacoes de seguranca (escopo didatico)
 - Nenhuma senha e salva em claro.
