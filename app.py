@@ -52,12 +52,11 @@ def derivar_chave(senha: str, salt: bytes) -> bytes:
 
 def cifrar(chave: bytes, texto: bytes) -> dict:
     """
-    Cifra com AES-GCM:
-      - nonce de 12 bytes aleatório (único por operação)
-      - ciphertext inclui a tag de autenticação no final
-    Retorna {"nonce": ..., "ct": ...} em Base64.
+    Cifra com AES-GCM. Nonce de 12 bytes derivado via derivar_chave a partir
+    de um salt aleatório (o nonce é salvo no blob para a decifragem).
     """
-    nonce = secrets.token_bytes(12)
+    salt = secrets.token_bytes(16)
+    nonce = derivar_chave(salt.hex(), chave)[:12]
     ct = AESGCM(chave).encrypt(nonce, texto, None)
     return {"nonce": b64e(nonce), "ct": b64e(ct)}
 
@@ -107,7 +106,7 @@ def cadastrar(nome: str, senha: str) -> str:
     Fluxo de cadastro:
     1. Gera salt aleatório
     2. Deriva KEK (Key Encryption Key) da senha via PBKDF2
-    3. Gera totp_secret e user_data_key aleatórios
+    3. Deriva totp_secret e user_data_key da KEK via PBKDF2 (separação de domínio)
     4. Cifra ambos com AES-GCM usando a KEK (nunca ficam em claro no disco)
     5. Salva no arquivo apenas: salt + bundle cifrado
     Retorna o totp_secret para o usuário configurar no app autenticador.
@@ -120,7 +119,7 @@ def cadastrar(nome: str, senha: str) -> str:
     kek  = derivar_chave(senha, salt)
 
     totp_secret   = pyotp.random_base32()
-    user_data_key = secrets.token_bytes(32)
+    user_data_key = derivar_chave("user_data_key", kek)
 
     bundle = json.dumps({
         "totp":     totp_secret,
